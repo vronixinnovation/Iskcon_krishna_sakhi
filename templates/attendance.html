@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISKCON Program Attendance</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("{{ url_for('static', filename='images/background.jpg') }}"); /* Reference the image here */
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            width: 80%;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: relative;
+            top: 130px;
+            border: 2px solid white;
+        }
+
+        h2 {
+            color: #2e8b57;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: bold;
+            text-align: left;
+            width: 100%;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        select:hover, input[type="text"]:hover {
+            border-color: #2e8b57;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #2e8b57;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #3c9e70;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+        .container:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+        input::placeholder {
+            color: #999;
+        }
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>KRISHNA SAKHI Attendance</h2>
+
+        <form method="POST" action="{{ url_for('attendance') }}">
+            <input type="hidden" name="name" value="{{ name }}">
+            <input type="hidden" name="phone" value="{{ phone }}">
+
+            <label for="status">Mark Your Attendance:</label>
+            <select id="status" name="status" required>
+                <option value="">Select</option>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+            </select>
+
+            <button type="submit">Submit Attendance</button>
+        </form>
+
+        <div class="footer">
+            <p>Thank you for participating in our KRISHNA SAKHI program!</p>
+        </div>
+    </div>
+</body>
+</html>
